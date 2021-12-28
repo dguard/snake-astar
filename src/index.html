@@ -1,0 +1,59 @@
+<html><head>
+
+    <style>
+        .main-container {
+            min-width: 700px;
+            overflow-x: hidden;
+            height: 100%;
+        }
+        .board-container {
+            position: absolute;
+            left: -1050px;
+            top: -90px;
+        }
+
+        @media (min-width: 1700px) {
+            .board-container {
+                position: absolute;
+                left: -670px;
+                top: 0px;
+            }
+        }
+
+
+    </style>
+
+</head><body style="margin: 0;">
+
+<div class="main-container">
+
+    <img src="static/img/bg-grid.png" style="
+    display: none;
+"><img src="static/img/bg.jpg" style="
+    max-height: 100%;
+">
+
+<div style="display: table; width: 100%;position: absolute; left: 0; top: 0;">
+<div style="display: table-cell; width: 40%"></div>
+
+<div style="display: table-cell; position: relative;">
+    <div style="opacity: inherit;">
+
+        <div class="board-container" style="
+    transform: scale(0.4);
+"><div style="
+"><table></table></div></div>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="static/js/node.js"></script>
+<script src="static/js/astarAlgo.js"></script>
+<script src="static/js/astarDemo.js"></script>
+<script src="static/js/keepRunning.js"></script>
+
+</body></html>
