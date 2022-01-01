@@ -518,6 +518,7 @@ var AStarDemo = function() {
         var endX = 4;
 
 
+
         /*
         var startY = 6;
         var startX = 14;
@@ -526,39 +527,126 @@ var AStarDemo = function() {
         var endX = 20;
         */
 
+
+        // var startY = 2;
+        // var startX = 14;
+        //
+        // var endY = 7;
+        // var endX = 14;
+
+        /*
+        var startY = 7;
+        var startX = 13;
+
+        var endY = 7;
+        var endX = 14;
+
+
+        var startY = 1;
+        var startX = 20;
+
+        var endY = 2;
+        var endX = 22;
+
+
+        var startY = 6;
+        var startX = 12;
+
+        var endY = 7;
+        var endX = 4;
+        */
+
         astarAlgo.putEndCell(endY, endX);
         astarAlgo.putStartCell(startY, startX);
 
         /*
-        var wallStartY = 2;
-        var wallStartX = 6;
-        astarAlgo.putWallCell(wallStartY, wallStartX);
-        var wallStartY = 2;
-        var wallStartX = 7;
-        astarAlgo.putWallCell(wallStartY, wallStartX);
+        var listWall = [{y: 4, x: 12},
+            {y: 4, x: 13},
+            {y: 4, x: 14},
+            {y: 4, x: 15},
+            {y: 4, x: 16},
+            {y: 4, x: 17},
+            {y: 5, x: 18},
+            {y: 6, x: 18},
+            {y: 7, x: 18},
+            {y: 3, x: 3},
+            {y: 4, x: 3},
+            {y: 5, x: 3},
+            {y: 2, x: 8},
+            {y: 2, x: 9},
+            {y: 2, x: 10},
+            {y: 5, x: 12},
+            {y: 5, x: 13},
+            {y: 5, x: 14},
+            {y: 6, x: 7},
+            {y: 7, x: 7},
+            {y: 8, x: 7},
+            {y: 6, x: 22},
+            {y: 7, x: 22},
+            {y: 8, x: 22},
+            {y: 6, x: 19},
+            {y: 6, x: 20},
+            {y: 6, x: 21},
+            {y: 5, x: 20},
+            {y: 5, x: 21},
+            {y: 5, x: 22},
+            {y: 4, x: 8},
+            {y: 5, x: 8},
+            {y: 6, x: 8},
+            {y: 5, x: 15},
+            {y: 6, x: 15},
+            {y: 7, x: 15},
+            {y: 2, x: 18},
+            {y: 2, x: 19},
+            {y: 2, x: 20},
+            {y: 3, x: 16},
+            {y: 3, x: 17},
+            {y: 3, x: 18},
+            {y: 2, x: 5},
+            {y: 3, x: 5},
+            {y: 4, x: 5},
+            {y: 3, x: 11},
+            {y: 4, x: 11},
+            {y: 5, x: 11},
+        ];
+        listWall.map((item)=> {
+            astarAlgo.putWallCell(item.y, item.x);
+        })
         */
 
-        /*
-        var horizontalWallCoords = [{y:2,x:9}, {y:2,x:10}, {y:2,x:11}];
-        astarAlgo.putWallCell(horizontalWallCoords[0].y, horizontalWallCoords[0].x);
-        astarAlgo.putWallCell(horizontalWallCoords[1].y, horizontalWallCoords[1].x);
-        astarAlgo.putWallCell(horizontalWallCoords[2].y, horizontalWallCoords[2].x);
 
-        var horizontalWallCoords = [{y:5,x:13}, {y:5,x:14}, {y:5,x:15}];
-        astarAlgo.putWallCell(horizontalWallCoords[0].y, horizontalWallCoords[0].x);
-        astarAlgo.putWallCell(horizontalWallCoords[1].y, horizontalWallCoords[1].x);
-        astarAlgo.putWallCell(horizontalWallCoords[2].y, horizontalWallCoords[2].x);
+        // var wallStartY = 2;
+        // var wallStartX = 6;
+        // astarAlgo.putWallCell(wallStartY, wallStartX);
+        // var wallStartY = 2;
+        // var wallStartX = 7;
+        // astarAlgo.putWallCell(wallStartY, wallStartX);
 
-        var verticalWallCoords = [{y:2,x:13}, {y:3,x:13}, {y:4,x:13}];
-        astarAlgo.putWallCell(verticalWallCoords[0].y, verticalWallCoords[0].x);
-        astarAlgo.putWallCell(verticalWallCoords[1].y, verticalWallCoords[1].x);
-        astarAlgo.putWallCell(verticalWallCoords[2].y, verticalWallCoords[2].x);
 
-        var verticalWallCoords = [{y:6,x:19}, {y:7,x:19}, {y:8,x:19}];
-        astarAlgo.putWallCell(verticalWallCoords[0].y, verticalWallCoords[0].x);
-        astarAlgo.putWallCell(verticalWallCoords[1].y, verticalWallCoords[1].x);
-        astarAlgo.putWallCell(verticalWallCoords[2].y, verticalWallCoords[2].x);
-        */
+
+
+        // var horizontalWallCoords = [{y:2,x:9}, {y:2,x:10}, {y:2,x:11}];
+        // astarAlgo.putWallCell(horizontalWallCoords[0].y, horizontalWallCoords[0].x);
+        // astarAlgo.putWallCell(horizontalWallCoords[1].y, horizontalWallCoords[1].x);
+        // astarAlgo.putWallCell(horizontalWallCoords[2].y, horizontalWallCoords[2].x);
+        //
+        // var horizontalWallCoords = [{y:5,x:13}, {y:5,x:14}, {y:5,x:15}];
+        // astarAlgo.putWallCell(horizontalWallCoords[0].y, horizontalWallCoords[0].x);
+        // astarAlgo.putWallCell(horizontalWallCoords[1].y, horizontalWallCoords[1].x);
+        // astarAlgo.putWallCell(horizontalWallCoords[2].y, horizontalWallCoords[2].x);
+        //
+        // var verticalWallCoords = [{y:2,x:13}, {y:3,x:13}, {y:4,x:13}];
+        // astarAlgo.putWallCell(verticalWallCoords[0].y, verticalWallCoords[0].x);
+        // astarAlgo.putWallCell(verticalWallCoords[1].y, verticalWallCoords[1].x);
+        // astarAlgo.putWallCell(verticalWallCoords[2].y, verticalWallCoords[2].x);
+        //
+        // var verticalWallCoords = [{y:6,x:19}, {y:7,x:19}, {y:8,x:19}];
+        // astarAlgo.putWallCell(verticalWallCoords[0].y, verticalWallCoords[0].x);
+        // astarAlgo.putWallCell(verticalWallCoords[1].y, verticalWallCoords[1].x);
+        // astarAlgo.putWallCell(verticalWallCoords[2].y, verticalWallCoords[2].x);
+
+
+
 
 
         try {

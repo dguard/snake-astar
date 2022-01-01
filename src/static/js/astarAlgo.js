@@ -18,6 +18,7 @@ AStarAlgo.js = function() {
     var endX;
 
     var instance = {};
+    var solutions = {};
 
     var attachToNodeGrid = function(nodeGrid, neighbours) {
         for(var i = 0; i < neighbours.length; i++) {
@@ -172,6 +173,9 @@ AStarAlgo.js = function() {
             var coords = JSON.parse(item);
             return nodeGrid[coords.y][coords.x];
         }).sort((nodeA, nodeB) => {
+            if(nodeB === null) return -1;
+            if(nodeA === null) return 1;
+
             return nodeA.expectedTotalCost() - nodeB.expectedTotalCost();
         }).shift();
         return lowestNode;
@@ -216,7 +220,123 @@ AStarAlgo.js = function() {
                 }
                 path = path.reverse();
                 foundPath = path;
+
+                // begin avoiding repeating region
+                var tmpPath = path.slice(0).reverse();
+                var usedSolution;
+                while(tmpPath.length > 1) {
+                    if(!usedSolution) {
+                        if(!solutions[`_${tmpPath[0].y}_${tmpPath[0].x}`]) {
+                            solutions[`_${tmpPath[0].y}_${tmpPath[0].x}`] = {
+                                time: Number(new Date())
+                            };
+                        }
+
+                        usedSolution = solutions[`_${tmpPath[0].y}_${tmpPath[0].x}`];
+                    } else {
+                        //
+                    }
+
+                    if (usedSolution && !usedSolution[`_${tmpPath[1].y}_${tmpPath[1].x}`]) {
+                        usedSolution[`_${tmpPath[1].y}_${tmpPath[1].x}`] = {
+                            time: Number(new Date())
+                        };
+                    }
+                    usedSolution = usedSolution[`_${tmpPath[1].y}_${tmpPath[1].x}`];
+
+
+                    tmpPath.shift();
+                }
+                // console.log(JSON.stringify(solutions));
+
+                var commonPath = [Object.keys(solutions)[0]];
+                var usedSolution = solutions;
+                while(Object.keys(usedSolution).length > 0) {
+                    var keys = Object.keys(usedSolution);
+                    if(keys.length > 1) {
+                        var sortedKeys = keys.sort((keyA, keyB) => {
+                            if(typeof usedSolution[keyB] !== Object(usedSolution[keyB])) {
+                                return -1;
+                            }
+                            if(typeof usedSolution[keyA] !== Object(usedSolution[keyA])) {
+                                return 1;
+                            }
+
+                            return usedSolution[keyA]['time'] - usedSolution[keyB]['time'];
+                        });
+                        // console.log('sorted keys:' + JSON.stringify(sortedKeys));
+                        if(sortedKeys[0] === 'time') {
+                            sortedKeys = sortedKeys.slice(1);
+                        }
+                        if(sortedKeys.length > 0) {
+                            var firstRecord = sortedKeys[0];
+                            usedSolution = usedSolution[firstRecord];
+                            commonPath.push(firstRecord)
+                        }
+                    } else {
+                        usedSolution = usedSolution[keys[0]];
+
+                        if(typeof usedSolution === Object(usedSolution)) {
+                            commonPath.push(keys[0])
+                        }
+                    }
+
+                }
+                // end avoiding repeating region
+                console.log(commonPath);
+                // nextTurn from commonPath already in solutions tree and endY, endX same
+
+                // console.log(commonPath.reverse(), `_${path[1].y}_${path[1].x}`, commonPath.reverse().indexOf(`_${path[1].y}_${path[1].x}`));
+
+                // next turn found in list
+                //
+                // console.log(instance.listWall);
+                // console.log(startY, startX);
+                // console.log(endY, endX);
+
+
+                if(path.length > 1 && commonPath.reverse().indexOf(`_${path[1].y}_${path[1].x}`) > 0) {
+                    var foundIndex = commonPath.indexOf(`_${path[0].y}_${path[0].x}`);
+
+                    var tmpCommonPath = commonPath.slice(foundIndex);
+
+                    path = path.filter((item) => {
+                        return tmpCommonPath.indexOf(`_${item.y}_${item.x}`) > 0;
+                    });
+                    if(path.length === 1) {
+                        path = [path[0], path[0]];
+                    }
+
+                    foundPath = path;
+                }
+                // // fix bug
+                // if(!path) {
+                // }
+                // console.log(JSON.stringify(path));
+                //
+                // // release memory
+                // if(path[1].y === endY && path[1].x === endX) {
+                //     Object.keys(solutions).map((key) => {
+                //         delete solutions[key];
+                //     });
+                // }
+
+
+
+
+                // console.log(JSON.stringify(solutions));
+
                 callback(path);
+
+                // path has same endY, endX
+                // remember startX, startY
+                // path has common innerPath but different startX, startY
+                // first time remember
+                // second time common inner path found and have option to move from startX, startY to innerPath[0]
+
+                // previous turn
+                // current turn has different endY, endX
+                // remove previous turn
                 return;
             }
             this._openNode(searchNode.y, searchNode.x);
