@@ -309,7 +309,8 @@ AStarAlgo.js = function() {
 
                     foundPath = path;
                 }
-                // // fix bug with empty path
+
+                // // begin fix bug with empty path
                 var solutionsList = [];
 
                 if(path.length === 0) {
@@ -360,6 +361,8 @@ AStarAlgo.js = function() {
                     });
 
                 }
+                // end fix bug with empty path
+
                 // console.log(JSON.stringify(path));
                 //
                 // // release memory
