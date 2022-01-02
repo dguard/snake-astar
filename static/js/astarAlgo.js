@@ -371,6 +371,10 @@ AStarAlgo.js = function() {
 
                 // console.log(JSON.stringify(path));
                 //
+                if(path.length === 0) {
+                    return callback(null);
+                }
+
                 // // release memory
                 if(path.length === 1) {
                     path = [path[0], path[0]];
