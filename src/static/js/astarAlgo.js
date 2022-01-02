@@ -211,6 +211,12 @@ AStarAlgo.js = function() {
         for(var iterationSoFar = 0; iterationSoFar < iterationsPerCalculation; iterationSoFar++) {
             var searchNode = getLowestCostNode();
 
+            if(!searchNode) {
+                // node around walls
+                searchNode = nodeGrid[startY][startX];
+                return callback(null);
+            }
+
             if(searchNode.x === endX && searchNode.y === endY) {
                 var foundNode = searchNode;
                 var path = [foundNode];
@@ -394,6 +400,7 @@ AStarAlgo.js = function() {
                 // remove previous turn
                 return;
             }
+
             this._openNode(searchNode.y, searchNode.x);
         }
 

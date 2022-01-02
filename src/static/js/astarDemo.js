@@ -463,6 +463,10 @@ var AStarDemo = function() {
 
 
         astarAlgo.findPath(startX, startY, endX, endY, function(path) {
+            if(path === null) {
+                return cb(null);
+            }
+
             var nodeGrid = astarAlgo.getNodeGrid();
 
             var openedList = astarAlgo.getOpenedList();
@@ -500,7 +504,16 @@ var AStarDemo = function() {
         if(startCoords.y === endCoords.y && startCoords.x === endCoords.x) {
             endCoords = generateGoalCoords();
         }
-        doTurn(startCoords.y, startCoords.x, endCoords.y, endCoords.x, cb);
+        doTurn(startCoords.y, startCoords.x, endCoords.y, endCoords.x, (path) => {
+            if(path === null) {
+                this.init();
+                setTimeout(() => {
+                    cb();
+                }, 0);
+            } else {
+                cb();
+            }
+        });
     }
 
     this.init = function() {
@@ -722,6 +735,7 @@ var AStarDemo = function() {
             astarAlgo.putWallCell(verticalWallCoords[2].y, verticalWallCoords[2].x);
         } catch (err) {
         }
+
 
 
         renderGrid();
