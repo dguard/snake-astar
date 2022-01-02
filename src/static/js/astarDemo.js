@@ -488,8 +488,14 @@ var AStarDemo = function() {
     }
     this.doTurn = function(cb) {
         var path = astarAlgo.getFoundPath();
-        var startCoords = {y: path.slice(1)[0].y, x: path.slice(1)[0].x};
-        var endCoords = {y: path.slice(-1)[0].y, x: path.slice(-1)[0].x};
+
+        if(path.length === 1) {
+            var startCoords = {y: path[0].y, x: path[0].x};
+            endCoords = generateGoalCoords();
+        } else {
+            var startCoords = {y: path.slice(1)[0].y, x: path.slice(1)[0].x};
+            var endCoords = {y: path.slice(-1)[0].y, x: path.slice(-1)[0].x};
+        }
 
         if(startCoords.y === endCoords.y && startCoords.x === endCoords.x) {
             endCoords = generateGoalCoords();

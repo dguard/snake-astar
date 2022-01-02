@@ -309,17 +309,69 @@ AStarAlgo.js = function() {
 
                     foundPath = path;
                 }
-                // // fix bug
-                // if(!path) {
-                // }
+                // // fix bug with empty path
+                var solutionsList = [];
+
+                if(path.length === 0) {
+                    function traverseTree(usedSolution, providedKey, providedPath, listProvidedPaths) {
+                        var isEndNode = Object.keys(usedSolution[providedKey]).length === 1 && Object.keys(usedSolution[providedKey]).indexOf('time') !== -1;
+                        if(isEndNode) {
+                            var newProvidedPath = providedPath.slice(0);
+                            newProvidedPath.push(providedKey);
+                            listProvidedPaths.push(newProvidedPath);
+                            return;
+                        } else {
+                            providedPath.push(providedKey);
+                            Object.keys(usedSolution[providedKey]).filter((key) => {
+                                return usedSolution[providedKey][key] === Object(usedSolution[providedKey][key])
+                            }).map((providedInnerKey) => {
+                                var providedPathInner = providedPath.concat([]);
+                                traverseTree(usedSolution[providedKey], providedInnerKey, providedPathInner, listProvidedPaths);
+                            })
+                        }
+                    }
+                    function traverseTreeFromRoot(usedSolution, solutionsList){
+                        Object.keys(usedSolution).filter((key) => {
+                            return usedSolution[key] === Object(usedSolution[key]);
+                        }).map((providedKey) => {
+                            var providedPath = [];
+                            traverseTree(usedSolution, providedKey, providedPath, solutionsList);
+                        })
+                    }
+
+                    traverseTreeFromRoot(solutions, solutionsList);
+
+                    var solutionFound = false;
+                    solutionsList.map((providedPath) => {
+                        if(!solutionFound) {
+                            var foundPathIndex = providedPath.reverse().indexOf(`_${startY}_${startX}`);
+                            if(foundPathIndex !== -1) {
+                                path = providedPath.reverse().slice(foundPathIndex).map((item) => {
+                                    var coordsPieces = item.slice(1).split('_');
+                                    return nodeGrid[coordsPieces[0]][coordsPieces[1]];
+                                }).filter((item) => {
+                                    return item;
+                                });
+                                foundPath = path;
+
+                                solutionFound = true;
+                            }
+                        }
+                    });
+
+                }
                 // console.log(JSON.stringify(path));
                 //
                 // // release memory
-                // if(path[1].y === endY && path[1].x === endX) {
-                //     Object.keys(solutions).map((key) => {
-                //         delete solutions[key];
-                //     });
-                // }
+                if(path.length === 1) {
+                    path = [path[0], path[0]];
+                }
+
+                if(path[1].y === endY && path[1].x === endX) {
+                    Object.keys(solutions).map((key) => {
+                        delete solutions[key];
+                    });
+                }
 
 
 

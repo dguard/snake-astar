@@ -5,7 +5,7 @@ function _keepRunning() {
     astarDemo.doTurn(function() {
         setTimeout(() => {
             _keepRunning();
-        }, 100)
+        }, 10)
     })
 }
 _keepRunning();
