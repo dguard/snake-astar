@@ -371,11 +371,15 @@ AStarAlgo.js = function() {
 
                 // console.log(JSON.stringify(path));
                 //
-                // // release memory
+                if(path.length === 0) {
+                    return callback(null);
+                }
+
                 if(path.length === 1) {
                     path = [path[0], path[0]];
                 }
 
+                // // release memory
                 if(path[1].y === endY && path[1].x === endX) {
                     Object.keys(solutions).map((key) => {
                         delete solutions[key];
