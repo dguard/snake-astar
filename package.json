@@ -7,6 +7,14 @@
   "scripts": {
     "test": "karma --browsers Chrome start ./karma.conf.js"
   },
+  "keywords": [
+    "a star",
+    "a*",
+    "star",
+    "karma",
+    "jasmine",
+    "snake"
+  ],
   "license": "MIT",
   "devDependencies": {
     "karma-chrome-launcher": "^3.1.0",
