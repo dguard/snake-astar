@@ -1,3 +1,11 @@
+/**
+ *   AStarDemo.js
+ *   github.com/dguard/snake-astar
+ *   Licensed under the MIT license.
+ *
+ *   Implementation By Alexander Serditov (keep@digitallyconstructed.ru)
+ **/
+
 var listeners = [];
 
 var AStarDemo = function() {
@@ -7,15 +15,14 @@ var AStarDemo = function() {
 
     var grid;
     var astarAlgo;
-    // worker
-    // watcher
+
     var renderGrid = function() {
         var table = document.createElement('table');
         table.style = `
-        border-spacing: initial;
-        border-top: 5px solid rgb(16, 57, 103);
-        border-left: 5px solid rgb(16, 57, 103);
-    `;
+            border-spacing: initial;
+            border-top: 5px solid rgb(16, 57, 103);
+            border-left: 5px solid rgb(16, 57, 103);
+        `;
 
         for(var i = 0; i < grid.length; i++) {
             var row = document.createElement('tr');
@@ -25,15 +32,15 @@ var AStarDemo = function() {
 
                 var rect = document.createElement('div');
                 rect.style = `
-                width: 96px;
-                height: 96px;
-            `;
+                    width: 96px;
+                    height: 96px;
+                `;
                 cell.style = `
-                background: #fff;
-                border-right: 5px solid #103967;
-                border-bottom: 5px solid #103967;
-                padding: 0;
-            `;
+                    background: #fff;
+                    border-right: 5px solid #103967;
+                    border-bottom: 5px solid #103967;
+                    padding: 0;
+                `;
 
                 cell.appendChild(rect);
 
@@ -54,48 +61,11 @@ var AStarDemo = function() {
             var cell = document.querySelectorAll('table tr')[coords.y].querySelectorAll('td')[coords.x];
             var newRect = document.createElement('div');
             newRect.style = `
-            width: 96px;
-            height: 96px;
-            background: #8fb667;
-            opacity: .7;
-        `;
-            /*
-            var costFromStartingNode = node.costFromStartingNode;
-            var costToEndNode = node.costToEndNode;
-
-            var expectedTotalCost = node.expectedTotalCost();
-
-            var newCostFromStartingNodeCounter = document.createElement('div');
-            newCostFromStartingNodeCounter.style = `
-                float: left;
-                font-size: 25px;
-                margin-left: 10px;
-                margin-right: 30px;
-                margin-top: 15px;
-                margin-bottom: 5px;
+                width: 96px;
+                height: 96px;
+                background: #8fb667;
+                opacity: .7;
             `;
-            newCostFromStartingNodeCounter.innerHTML = costFromStartingNode;
-
-            var newCostToEndNodeCounter = document.createElement('div');
-            newCostToEndNodeCounter.style = `
-                float: left;
-                font-size: 25px;
-                margin-top: 15px;
-            `;
-            newCostToEndNodeCounter.innerHTML = costToEndNode;
-
-            var newExpectedTotalCostCounter = document.createElement('div');
-            newExpectedTotalCostCounter.style = `
-                font-size: 37px;
-                text-align: center;
-            `;
-            newExpectedTotalCostCounter.innerHTML = expectedTotalCost;
-
-            newRect.appendChild(newCostFromStartingNodeCounter);
-            newRect.appendChild(newCostToEndNodeCounter);
-            newRect.appendChild(newExpectedTotalCostCounter);
-            */
-
             cell.querySelector('div').outerHTML = newRect.outerHTML;
 
         })
@@ -108,47 +78,11 @@ var AStarDemo = function() {
             var cell = document.querySelectorAll('table tr')[coords.y].querySelectorAll('td')[coords.x];
             var newRect = document.createElement('div');
             newRect.style = `
-            width: 96px;
-            height: 96px;
-            background: #ff4141;
-            opacity: .4;
-        `;
-            /*
-            var costFromStartingNode = node.costFromStartingNode;
-            var costToEndNode = node.costToEndNode;
-
-            var expectedTotalCost = node.expectedTotalCost();
-
-            var newCostFromStartingNodeCounter = document.createElement('div');
-            newCostFromStartingNodeCounter.style = `
-                float: left;
-                font-size: 25px;
-                margin-left: 10px;
-                margin-right: 30px;
-                margin-top: 15px;
-                margin-bottom: 5px;
+                width: 96px;
+                height: 96px;
+                background: #ff4141;
+                opacity: .4;
             `;
-            newCostFromStartingNodeCounter.innerHTML = costFromStartingNode;
-
-            var newCostToEndNodeCounter = document.createElement('div');
-            newCostToEndNodeCounter.style = `
-                float: left;
-                font-size: 25px;
-                margin-top: 15px;
-            `;
-            newCostToEndNodeCounter.innerHTML = costToEndNode;
-
-            var newExpectedTotalCostCounter = document.createElement('div');
-            newExpectedTotalCostCounter.style = `
-                font-size: 37px;
-                text-align: center;
-            `;
-            newExpectedTotalCostCounter.innerHTML = expectedTotalCost;
-
-            newRect.appendChild(newCostFromStartingNodeCounter);
-            newRect.appendChild(newCostToEndNodeCounter);
-            newRect.appendChild(newExpectedTotalCostCounter);
-            */
             cell.querySelector('div').outerHTML = newRect.outerHTML;
         });
     }
@@ -160,47 +94,11 @@ var AStarDemo = function() {
             var cell = document.querySelectorAll('table tr')[coords.y].querySelectorAll('td')[coords.x];
             var newRect = document.createElement('div');
             newRect.style = `
-            width: 96px;
-            height: 96px;
-            background: #19aeff;
-            opacity: .7;
-        `;
-
-            var costFromStartingNode = node.costFromStartingNode;
-            var costToEndNode = node.costToEndNode;
-
-            var expectedTotalCost = node.expectedTotalCost();
-            /*
-            var newCostFromStartingNodeCounter = document.createElement('div');
-            newCostFromStartingNodeCounter.style = `
-                float: left;
-                font-size: 25px;
-                margin-left: 10px;
-                margin-right: 30px;
-                margin-top: 15px;
-                margin-bottom: 5px;
+                width: 96px;
+                height: 96px;
+                background: #19aeff;
+                opacity: .7;
             `;
-            newCostFromStartingNodeCounter.innerHTML = costFromStartingNode;
-
-            var newCostToEndNodeCounter = document.createElement('div');
-            newCostToEndNodeCounter.style = `
-                float: left;
-                font-size: 25px;
-                margin-top: 15px;
-            `;
-            newCostToEndNodeCounter.innerHTML = costToEndNode;
-
-            var newExpectedTotalCostCounter = document.createElement('div');
-            newExpectedTotalCostCounter.style = `
-                font-size: 37px;
-                text-align: center;
-            `;
-            newExpectedTotalCostCounter.innerHTML = expectedTotalCost;
-
-            newRect.appendChild(newCostFromStartingNodeCounter);
-            newRect.appendChild(newCostToEndNodeCounter);
-            newRect.appendChild(newExpectedTotalCostCounter);
-            */
             cell.querySelector('div').outerHTML = newRect.outerHTML;
         });
     }
@@ -210,22 +108,22 @@ var AStarDemo = function() {
 
             var newRect = document.createElement('div');
             newRect.style = `
-            width: 96px;
-            height: 96px;
-            position: relative;
-            background: #fff;
-        `;
+                width: 96px;
+                height: 96px;
+                position: relative;
+                background: #fff;
+            `;
             var innerRect = document.createElement('div');
             innerRect.style = `
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 48px;
-            height: 48px;
-            background: #615957;
-            margin: 24px;
-            border-radius: 10px;
-        `;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 48px;
+                height: 48px;
+                background: #615957;
+                margin: 24px;
+                border-radius: 10px;
+            `;
             newRect.appendChild(innerRect);
             cell.querySelector('div').outerHTML = newRect.outerHTML;
         });
@@ -238,22 +136,22 @@ var AStarDemo = function() {
 
         var newRect = document.createElement('div');
         newRect.style = `
-        width: 96px;
-        height: 96px;
-        position: relative;
-        background: rgb(40, 157, 224);
-    `;
+            width: 96px;
+            height: 96px;
+            position: relative;
+            background: rgb(40, 157, 224);
+        `;
         var snakeHead = document.createElement('div');
         snakeHead.style = `
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 48px;
-        height: 48px;
-        background: #07496e;
-        margin: 24px;
-        border-radius: 10px;
-    `;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 48px;
+            height: 48px;
+            background: #07496e;
+            margin: 24px;
+            border-radius: 10px;
+        `;
         newRect.appendChild(snakeHead);
         cell.querySelector('div').outerHTML = newRect.outerHTML;
     };
@@ -263,22 +161,22 @@ var AStarDemo = function() {
         var cell = document.querySelectorAll('table tr')[coords.y].querySelectorAll('td')[coords.x];
         var newRect = document.createElement('div');
         newRect.style = `
-        width: 96px;
-        height: 96px;
-        position: relative;
-        background: #19aeff;
-    `;
+            width: 96px;
+            height: 96px;
+            position: relative;
+            background: #19aeff;
+        `;
         var goalCell = document.createElement('div');
         goalCell.style = `
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        margin: 18px;
-        border-left: 30px solid transparent;
-        border-right: 30px solid transparent;
-        border-bottom: 50px solid rgb(252, 213, 53);
-        border-radius: 100px;
-    `;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            margin: 18px;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid rgb(252, 213, 53);
+            border-radius: 100px;
+        `;
         newRect.appendChild(goalCell);
         cell.querySelector('div').outerHTML = newRect.outerHTML;
     };
@@ -290,23 +188,23 @@ var AStarDemo = function() {
 
             var newRect = document.createElement('div');
             newRect.style = `
-            width: 96px;
-            height: 96px;
-            position: relative;
-            background: rgb(40, 157, 224);
-            opacity: .7l
-        `;
+                width: 96px;
+                height: 96px;
+                position: relative;
+                background: rgb(40, 157, 224);
+                opacity: .7l
+            `;
             var snakeHead = document.createElement('div');
             snakeHead.style = `
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 48px;
-            height: 48px;
-            background: #07496e;
-            margin: 24px;
-            border-radius: 10px;
-        `;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 48px;
+                height: 48px;
+                background: #07496e;
+                margin: 24px;
+                border-radius: 10px;
+            `;
             newRect.appendChild(snakeHead);
             cell.querySelector('div').outerHTML = newRect.outerHTML;
         })
@@ -347,7 +245,7 @@ var AStarDemo = function() {
     var generateGoalCoords = function() {
         var newCoords;
         var attempts = 0;
-        MAX_ATTEMPTS = 100000;
+        var MAX_ATTEMPTS = 100000;
         while(true) {
             newCoords = {y: getRandomInt(0, TOTAL_ROWS-1), x: getRandomInt(0, TOTAL_COLS-1)};
             var isSameCell = false;
@@ -385,7 +283,7 @@ var AStarDemo = function() {
         var centerNewCoords;
         var endNewCoords;
         var attempts = 0;
-        MAX_ATTEMPTS = 100000;
+        var MAX_ATTEMPTS = 100000;
         while(true) {
             startNewCoords = {y: getRandomInt(0, TOTAL_ROWS-1-2), x: getRandomInt(0, TOTAL_COLS-1)};
             if(attempts === MAX_ATTEMPTS) {
@@ -419,7 +317,7 @@ var AStarDemo = function() {
         var centerNewCoords;
         var endNewCoords;
         var attempts = 0;
-        MAX_ATTEMPTS = 10000;
+        var MAX_ATTEMPTS = 10000;
         while(true) {
             startNewCoords = {y: getRandomInt(0, TOTAL_ROWS-1-2), x: getRandomInt(0, TOTAL_COLS-1)};
             if(attempts === MAX_ATTEMPTS) {
@@ -451,12 +349,6 @@ var AStarDemo = function() {
     var doTurn = function(startY, startX, endY, endX, cb) {
         astarAlgo.putEndCell(endY, endX);
         astarAlgo.putStartCell(startY, startX);
-
-        /*
-        var listWall = astarAlgo.getListWall();
-        listWall.map((item) => {
-            astarAlgo.putWallCell(item.y, item.x);
-        })*/
 
         renderGrid();
         assignEvents(astarAlgo);
@@ -517,7 +409,6 @@ var AStarDemo = function() {
     }
 
     this.init = function() {
-
         grid = [];
         for(var i = 0; i < TOTAL_ROWS; i++) {
             grid.push([]);
@@ -537,137 +428,9 @@ var AStarDemo = function() {
         var endX = 4;
 
 
-
-        /*
-        var startY = 6;
-        var startX = 14;
-
-        var endY = 8;
-        var endX = 20;
-        */
-
-
-        // var startY = 2;
-        // var startX = 14;
-        //
-        // var endY = 7;
-        // var endX = 14;
-
-        /*
-        var startY = 7;
-        var startX = 13;
-
-        var endY = 7;
-        var endX = 14;
-
-
-        var startY = 1;
-        var startX = 20;
-
-        var endY = 2;
-        var endX = 22;
-
-
-        var startY = 6;
-        var startX = 12;
-
-        var endY = 7;
-        var endX = 4;
-        */
-
         astarAlgo.putEndCell(endY, endX);
         astarAlgo.putStartCell(startY, startX);
 
-        /*
-        var listWall = [{y: 4, x: 12},
-            {y: 4, x: 13},
-            {y: 4, x: 14},
-            {y: 4, x: 15},
-            {y: 4, x: 16},
-            {y: 4, x: 17},
-            {y: 5, x: 18},
-            {y: 6, x: 18},
-            {y: 7, x: 18},
-            {y: 3, x: 3},
-            {y: 4, x: 3},
-            {y: 5, x: 3},
-            {y: 2, x: 8},
-            {y: 2, x: 9},
-            {y: 2, x: 10},
-            {y: 5, x: 12},
-            {y: 5, x: 13},
-            {y: 5, x: 14},
-            {y: 6, x: 7},
-            {y: 7, x: 7},
-            {y: 8, x: 7},
-            {y: 6, x: 22},
-            {y: 7, x: 22},
-            {y: 8, x: 22},
-            {y: 6, x: 19},
-            {y: 6, x: 20},
-            {y: 6, x: 21},
-            {y: 5, x: 20},
-            {y: 5, x: 21},
-            {y: 5, x: 22},
-            {y: 4, x: 8},
-            {y: 5, x: 8},
-            {y: 6, x: 8},
-            {y: 5, x: 15},
-            {y: 6, x: 15},
-            {y: 7, x: 15},
-            {y: 2, x: 18},
-            {y: 2, x: 19},
-            {y: 2, x: 20},
-            {y: 3, x: 16},
-            {y: 3, x: 17},
-            {y: 3, x: 18},
-            {y: 2, x: 5},
-            {y: 3, x: 5},
-            {y: 4, x: 5},
-            {y: 3, x: 11},
-            {y: 4, x: 11},
-            {y: 5, x: 11},
-        ];
-        listWall.map((item)=> {
-            astarAlgo.putWallCell(item.y, item.x);
-        })
-        */
-
-
-        // var wallStartY = 2;
-        // var wallStartX = 6;
-        // astarAlgo.putWallCell(wallStartY, wallStartX);
-        // var wallStartY = 2;
-        // var wallStartX = 7;
-        // astarAlgo.putWallCell(wallStartY, wallStartX);
-
-
-
-
-        // var horizontalWallCoords = [{y:2,x:9}, {y:2,x:10}, {y:2,x:11}];
-        // astarAlgo.putWallCell(horizontalWallCoords[0].y, horizontalWallCoords[0].x);
-        // astarAlgo.putWallCell(horizontalWallCoords[1].y, horizontalWallCoords[1].x);
-        // astarAlgo.putWallCell(horizontalWallCoords[2].y, horizontalWallCoords[2].x);
-        //
-        // var horizontalWallCoords = [{y:5,x:13}, {y:5,x:14}, {y:5,x:15}];
-        // astarAlgo.putWallCell(horizontalWallCoords[0].y, horizontalWallCoords[0].x);
-        // astarAlgo.putWallCell(horizontalWallCoords[1].y, horizontalWallCoords[1].x);
-        // astarAlgo.putWallCell(horizontalWallCoords[2].y, horizontalWallCoords[2].x);
-        //
-        // var verticalWallCoords = [{y:2,x:13}, {y:3,x:13}, {y:4,x:13}];
-        // astarAlgo.putWallCell(verticalWallCoords[0].y, verticalWallCoords[0].x);
-        // astarAlgo.putWallCell(verticalWallCoords[1].y, verticalWallCoords[1].x);
-        // astarAlgo.putWallCell(verticalWallCoords[2].y, verticalWallCoords[2].x);
-        //
-        // var verticalWallCoords = [{y:6,x:19}, {y:7,x:19}, {y:8,x:19}];
-        // astarAlgo.putWallCell(verticalWallCoords[0].y, verticalWallCoords[0].x);
-        // astarAlgo.putWallCell(verticalWallCoords[1].y, verticalWallCoords[1].x);
-        // astarAlgo.putWallCell(verticalWallCoords[2].y, verticalWallCoords[2].x);
-
-
-
-
-
         try {
             var horizontalWallCoords = generateHorizontalWallCoords();
             astarAlgo.putWallCell(horizontalWallCoords[0].y, horizontalWallCoords[0].x);
@@ -735,7 +498,6 @@ var AStarDemo = function() {
             astarAlgo.putWallCell(verticalWallCoords[2].y, verticalWallCoords[2].x);
         } catch (err) {
         }
-
 
 
         renderGrid();

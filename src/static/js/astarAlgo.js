@@ -1,8 +1,12 @@
+/**
+ *   AStarAlgo.js
+ *   github.com/dguard/snake-astar
+ *   Licensed under the MIT license.
+ *
+ *   Implementation By Alexander Serditov (keep@digitallyconstructed.ru)
+ **/
 var AStarAlgo = {};
 AStarAlgo.js = function() {
-
-    var TOTAL_ROWS = 6;
-    var TOTAL_COLS = 11;
 
     var collisionGrid;
     var nodeGrid;
@@ -182,16 +186,8 @@ AStarAlgo.js = function() {
     }
 
     this.findPath = function(startX, startY, _endX, _endY, callback) {
-        // check startX, startY and endX and endY inside board
-
         endY = _endY;
         endX = _endX;
-
-        /*
-        instance.openList = {};
-        instance.visitedList = {};
-        instance.listWall = [];
-        */
 
         var costToEndNode = Math.abs(endY - startY) + Math.abs(endX - startX) * 10;
         var startingNode = new Node(null, startX, startY, 0, costToEndNode);
@@ -253,7 +249,6 @@ AStarAlgo.js = function() {
 
                     tmpPath.shift();
                 }
-                // console.log(JSON.stringify(solutions));
 
                 var commonPath = [Object.keys(solutions)[0]];
                 var usedSolution = solutions;
@@ -270,7 +265,6 @@ AStarAlgo.js = function() {
 
                             return usedSolution[keyA]['time'] - usedSolution[keyB]['time'];
                         });
-                        // console.log('sorted keys:' + JSON.stringify(sortedKeys));
                         if(sortedKeys[0] === 'time') {
                             sortedKeys = sortedKeys.slice(1);
                         }
@@ -289,17 +283,6 @@ AStarAlgo.js = function() {
 
                 }
                 // end avoiding repeating region
-                console.log(commonPath);
-                // nextTurn from commonPath already in solutions tree and endY, endX same
-
-                // console.log(commonPath.reverse(), `_${path[1].y}_${path[1].x}`, commonPath.reverse().indexOf(`_${path[1].y}_${path[1].x}`));
-
-                // next turn found in list
-                //
-                // console.log(instance.listWall);
-                // console.log(startY, startX);
-                // console.log(endY, endX);
-
 
                 if(path.length > 1 && commonPath.reverse().indexOf(`_${path[1].y}_${path[1].x}`) > 0) {
                     var foundIndex = commonPath.indexOf(`_${path[0].y}_${path[0].x}`);
@@ -369,8 +352,6 @@ AStarAlgo.js = function() {
                 }
                 // end fix bug with empty path
 
-                // console.log(JSON.stringify(path));
-                //
                 if(path.length === 0) {
                     return callback(null);
                 }
@@ -386,22 +367,8 @@ AStarAlgo.js = function() {
                     });
                 }
 
-
-
-
-                // console.log(JSON.stringify(solutions));
-
                 callback(path);
 
-                // path has same endY, endX
-                // remember startX, startY
-                // path has common innerPath but different startX, startY
-                // first time remember
-                // second time common inner path found and have option to move from startX, startY to innerPath[0]
-
-                // previous turn
-                // current turn has different endY, endX
-                // remove previous turn
                 return;
             }
 

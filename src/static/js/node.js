@@ -1,3 +1,11 @@
+/**
+ *   Node.js
+ *   github.com/dguard/snake-astar
+ *   Licensed under the MIT license.
+ *
+ *   Implementation By Alexander Serditov (keep@digitallyconstructed.ru)
+ **/
+
 var Node = function(parent, positionX, positionY, costFromStartingNode, costToEndNode) {
 
     this.parent = parent;
