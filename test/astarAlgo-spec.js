@@ -1,6 +1,11 @@
-
+/**
+ *   AStarAlgo-Spec.js
+ *   github.com/dguard/snake-astar
+ *   Licensed under the MIT license.
+ *
+ *   Implementation By Alexander Serditov (keep@digitallyconstructed.ru)
+ **/
 describe('astarAlgo', () => {
-
 
     it('it should avoid repeating on this turn', ()=> {
 
@@ -19,24 +24,6 @@ describe('astarAlgo', () => {
         astarAlgo.setGrid(grid);
 
 
-        var startY = 4;
-        var startX = 7;
-
-        var endY = 1;
-        var endX = 4;
-
-
-
-        /*
-        var startY = 6;
-        var startX = 14;
-
-        var endY = 8;
-        var endX = 20;
-        */
-
-
-
         var startY = 2;
         var startX = 14;
 
@@ -44,26 +31,9 @@ describe('astarAlgo', () => {
         var endX = 14;
 
 
-        /*
-        var startY = 6;
-        var startX = 15;
-
-        var endY = 7;
-        var endX = 14;
-        */
-
         astarAlgo.putEndCell(endY, endX);
         astarAlgo.putStartCell(startY, startX);
 
-
-        /*
-        var wallStartY = 2;
-        var wallStartX = 6;
-        astarAlgo.putWallCell(wallStartY, wallStartX);
-        var wallStartY = 2;
-        var wallStartX = 7;
-        astarAlgo.putWallCell(wallStartY, wallStartX);
-        */
 
         var horizontalWallCoords = [{y:2,x:9}, {y:2,x:10}, {y:2,x:11}];
         astarAlgo.putWallCell(horizontalWallCoords[0].y, horizontalWallCoords[0].x);
